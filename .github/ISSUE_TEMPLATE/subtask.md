@@ -1,3 +1,10 @@
+---
+name: "🏃 Subtask Template"
+about: 서브테스크 이슈 템플릿입니다.
+title: '[Subtask] TITLE'
+labels: '🏃 Subtask'
+---
+
 # Subtask
 
 ## Summary
