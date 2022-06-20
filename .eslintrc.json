@@ -18,5 +18,5 @@
   "plugins": ["@typescript-eslint", "react", "html", "prettier"],
   "rules": {
     "no-unused-vars": "warn"
-  },
+  }
 }
