@@ -6,6 +6,7 @@ const Header = () => {
   return (
     <header>
         <Link to="/">LOGO</Link>
+        <Link to="/form" className='button'>리뷰 신청하기</Link>
     </header>
   )
 }
