@@ -1,0 +1,15 @@
+.Post {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #aaa;
+}
+
+.Post .top {
+  display: flex;
+  gap: 1em;
+  background-color: #ccc;
+}
+
+.Post .button-wrap {
+  text-align: right;
+}
