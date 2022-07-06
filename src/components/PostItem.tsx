@@ -1,7 +1,7 @@
 import React from 'react';
 import 'assets/css/PostItem.css';
 
-export const PostItem = () => {
+const PostItem = () => {
   return (
     <div className="PostItem">
       <div className="top">
@@ -17,3 +17,5 @@ export const PostItem = () => {
     </div>
   );
 };
+
+export default PostItem;
