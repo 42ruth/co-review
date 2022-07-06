@@ -1,9 +1,9 @@
 import React from 'react';
-import 'assets/css/Post.css';
+import 'assets/css/PostItem.css';
 
-export const Post = () => {
+export const PostItem = () => {
   return (
-    <div className="Post">
+    <div className="PostItem">
       <div className="top">
         <div className="username">깃헙이름(githubId)</div>
         <div className="date">날짜</div>
