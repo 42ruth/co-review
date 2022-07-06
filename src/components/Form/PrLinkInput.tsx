@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-interface PRLinkInputType {
+interface PrLinkInputType {
   value: string;
   setValue: (value: string) => void;
 }
 
-const PRLinkInput = ({value, setValue} : PRLinkInputType) => {
+const PrLinkInput = ({value, setValue} : PrLinkInputType) => {
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const regex = /^(https?:\/\/)(github\.com\/)([0-9a-zA-z-_]+)(\/)([0-9a-zA-z-_]+)(\/pull\/)([0-9]+$)/i;
@@ -38,4 +38,4 @@ const PRLinkInput = ({value, setValue} : PRLinkInputType) => {
   )
 }
 
-export default PRLinkInput;
+export default PrLinkInput;
