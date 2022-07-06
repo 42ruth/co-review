@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "../assets/css/header.css"
+import "assets/css/Header.css"
 
 const Header = () => {
   return (
     <header>
         <Link to="/">LOGO</Link>
+        <Link to="/form" className='button'>리뷰 신청하기</Link>
     </header>
   )
 }
