@@ -1,7 +1,7 @@
 import React from 'react';
+import PrLinkButton from 'components/PostList/PrLinkButton';
 import { PostItemType } from 'types/postTypes';
 import 'assets/css/PostItem.css';
-import PrLinkButton from 'components/PostItem/PrLinkButton';
 
 function formatDate(rawDate: string) {
   const rawDateObject = new Date(rawDate);
