@@ -29,8 +29,8 @@ function formatDate(rawDate: string) {
   return dateString;
 }
 
-const PostItem = ({ id, pr_link, contents, created_at }: PostItemType) => {
-  const formattedDate = formatDate(created_at);
+const PostItem = ({ id, prLink, contents, createdAt }: PostItemType) => {
+  const formattedDate = formatDate(createdAt);
 
   return (
     <div className="PostItem">
@@ -41,7 +41,7 @@ const PostItem = ({ id, pr_link, contents, created_at }: PostItemType) => {
       <div className="bottom">
         <div className="content">{contents}</div>
         <div className="button-wrap">
-          <PrLinkButton prLink={pr_link} />
+          <PrLinkButton prLink={prLink} />
         </div>
       </div>
     </div>
