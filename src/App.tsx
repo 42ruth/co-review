@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from 'pages/MainPage';
-import { Form } from 'pages/Form';
+import Form from 'pages/FormPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
