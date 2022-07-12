@@ -1,20 +1,20 @@
 export interface PostType {
   id?: number;
-  pr_link?: string;
+  prLink?: string;
   contents?: string;
-  created_at?: string;
-  updated_at?: string;
-  deleted_at?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string;
 }
 
 export interface PostItemType extends PostType {
   id: number;
-  pr_link: string;
+  prLink: string;
   contents: string;
-  created_at: string;
+  createdAt: string;
 }
 
 export interface PostRequestType extends PostType {
-  pr_link: string;
+  prLink: string;
   contents: string;
 }
