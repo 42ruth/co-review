@@ -1,41 +1,38 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+const prLinkRegex =
+  /^(https?:\/\/)(github\.com\/)([0-9a-zA-z-_]+)(\/)([0-9a-zA-z-_]+)(\/pull\/)([0-9]+$)/i;
 
-interface PrLinkInputType {
+interface PrLinkInputProp {
   value: string;
   setValue: (value: string) => void;
 }
 
-const PrLinkInput = ({value, setValue} : PrLinkInputType) => {
+const PrLinkInput = ({ value, setValue }: PrLinkInputProp) => {
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  const regex = /^(https?:\/\/)(github\.com\/)([0-9a-zA-z-_]+)(\/)([0-9a-zA-z-_]+)(\/pull\/)([0-9]+$)/i;
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget
+    const { value } = event.currentTarget;
     setValue(value);
-    setIsValid(regex.test(value))
-  }
+    setIsValid(prLinkRegex.test(value));
+  };
 
   const handleBlur = () => {
     setIsTouched(true);
-  }
+  };
 
-  return(
+  return (
     <div>
-      <div>
-        Pull Request 링크
-      </div>
+      <div>Pull Request 링크</div>
       <input
         placeholder="https://github.com/user/repo/pull/123"
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
       />
-      <div>
-        {isTouched && !isValid && '유효하지 않은 URL입니다.'}
-      </div>
+      <div>{isTouched && !isValid && '유효하지 않은 URL입니다.'}</div>
     </div>
-  )
-}
+  );
+};
 
 export default PrLinkInput;
