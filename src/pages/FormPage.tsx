@@ -1,6 +1,6 @@
 import React from 'react';
 import FormNotice from 'components/Form/FormNotice';
-import Form from 'components/Form/Form';
+import Form from 'components/Form';
 
 const FormPage = () => {
   return (
