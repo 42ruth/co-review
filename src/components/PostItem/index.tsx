@@ -1,6 +1,7 @@
 import React from 'react';
 import { PostItemType } from 'types/postTypes';
 import 'assets/css/PostItem.css';
+import PrLinkButton from './PrLinkButton';
 
 function formatDate(rawDate: string) {
   const rawDateObject = new Date(rawDate);
@@ -40,7 +41,7 @@ const PostItem = ({ id, pr_link, contents, created_at }: PostItemType) => {
       <div className="bottom">
         <div className="content">{contents}</div>
         <div className="button-wrap">
-          <button className="button">리뷰하러 가기</button>
+          <PrLinkButton prLink={pr_link} />
         </div>
       </div>
     </div>
