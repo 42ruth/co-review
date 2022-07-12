@@ -6,7 +6,7 @@ export interface ApiResponseType {
   status: number;
 }
 
-export interface FetchProps {
+export interface FetchProp {
   endpoint: string;
   method: string;
   data?: any;
@@ -23,7 +23,7 @@ export function useFetch({
   endpoint,
   method,
   data,
-}: FetchProps): FetchDataType {
+}: FetchProp): FetchDataType {
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
