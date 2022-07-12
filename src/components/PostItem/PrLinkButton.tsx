@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface PrLinkButtonProps {
+interface PrLinkButtonProp {
   prLink: string;
 }
 
-const PrLinkButton = ({ prLink }: PrLinkButtonProps) => {
+const PrLinkButton = ({ prLink }: PrLinkButtonProp) => {
   return (
     <a
       href={prLink}
@@ -12,7 +12,7 @@ const PrLinkButton = ({ prLink }: PrLinkButtonProps) => {
       rel="noopener noreferrer"
       className="button"
     >
-      리뷰하러가기
+      리뷰하러 가기
     </a>
   );
 };
