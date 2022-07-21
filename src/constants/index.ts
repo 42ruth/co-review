@@ -1,1 +1,1 @@
-export const API_ORIGIN = 'http://15.165.109.84:1337/api';
+export const API_ORIGIN = `${process.env.REACT_APP_API_ORIGIN}/api` || '';
