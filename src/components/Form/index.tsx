@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useFetch, FetchDataType } from 'api/useFetch';
 import PrLinkInput from 'components/Form/PrLinkInput';
 import FormContentTextarea from 'components/Form/FormContentTextarea';
@@ -17,6 +18,7 @@ const Form = () => {
     method: 'post',
     data: { data: postRequest },
   });
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -24,9 +26,7 @@ const Form = () => {
       return alert('유효하지 않은 Pull Request 링크입니다.');
     }
     request();
-    if (!isLoading && !error) {
-      // TODO: redirect page
-    }
+    navigate('/');
   };
 
   return (
