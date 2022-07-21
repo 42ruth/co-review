@@ -5,11 +5,17 @@ const prLinkRegex =
 interface PrLinkInputProp {
   value: string;
   setValue: (value: string) => void;
+  isValid: boolean;
+  setIsValid: (value: boolean) => void;
 }
 
-const PrLinkInput = ({ value, setValue }: PrLinkInputProp) => {
+const PrLinkInput = ({
+  value,
+  setValue,
+  isValid,
+  setIsValid,
+}: PrLinkInputProp) => {
   const [isTouched, setIsTouched] = useState(false);
-  const [isValid, setIsValid] = useState(false);
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
