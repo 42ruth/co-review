@@ -5,11 +5,17 @@ const prLinkRegex =
 interface PrLinkInputProp {
   value: string;
   setValue: (value: string) => void;
+  isValid: boolean;
+  setIsValid: (value: boolean) => void;
 }
 
-const PrLinkInput = ({ value, setValue }: PrLinkInputProp) => {
+const PrLinkInput = ({
+  value,
+  setValue,
+  isValid,
+  setIsValid,
+}: PrLinkInputProp) => {
   const [isTouched, setIsTouched] = useState(false);
-  const [isValid, setIsValid] = useState(false);
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
@@ -29,6 +35,7 @@ const PrLinkInput = ({ value, setValue }: PrLinkInputProp) => {
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        required
       />
       <div>{isTouched && !isValid && '유효하지 않은 URL입니다.'}</div>
     </div>
