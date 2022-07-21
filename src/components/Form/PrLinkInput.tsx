@@ -35,6 +35,7 @@ const PrLinkInput = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
+        required
       />
       <div>{isTouched && !isValid && '유효하지 않은 URL입니다.'}</div>
     </div>
