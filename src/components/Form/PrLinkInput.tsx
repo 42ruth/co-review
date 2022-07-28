@@ -16,6 +16,7 @@ const PrLinkInput = ({
   setIsValid,
 }: PrLinkInputProp) => {
   const [isTouched, setIsTouched] = useState(false);
+  setIsValid(prLinkRegex.test(value));
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
