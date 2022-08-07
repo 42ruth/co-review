@@ -31,7 +31,7 @@ function formatDate(rawDate: string) {
 }
 
 interface PostItemProp extends PostItemType {
-  toggleIsRefresh: () => void;
+  refresh: () => void;
 }
 
 const PostItem = ({
@@ -39,7 +39,7 @@ const PostItem = ({
   prLink,
   contents,
   createdAt,
-  toggleIsRefresh,
+  refresh,
 }: PostItemProp) => {
   const formattedDate = formatDate(createdAt);
 
@@ -49,7 +49,7 @@ const PostItem = ({
         <div className="username">깃헙이름(githubId)</div>
         <div className="date">{formattedDate}</div>
         {/* 로그인한 유저의 글에만 노출되도록 수정 */}
-        <DeleteButton id={id} toggleIsRefresh={toggleIsRefresh} />
+        <DeleteButton id={id} refresh={refresh} />
       </div>
       <div className="bottom">
         <div className="content">{contents}</div>
