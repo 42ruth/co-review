@@ -17,7 +17,7 @@ const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/form" element={<Form />} />
           <Route path="/posts/:id" element={<PostPage />} />
-          <Route path="/my" element={<MyPage />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
         <Footer />
       </UserContextProvider>
