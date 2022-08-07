@@ -21,7 +21,7 @@ export interface FetchDataType {
 
 export function useFetch({ endpoint, method, data }: FetchProp): FetchDataType {
   const [result, setResult] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const headers = {
