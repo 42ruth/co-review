@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFetch, FetchDataType } from 'api/useFetch';
 import PostItem from 'components/PostList/PostItem';
 import { API_ORIGIN } from 'constants/';
@@ -9,7 +9,13 @@ interface responseDataType {
 }
 
 const PostList = () => {
-  const { isLoading, error, data, request }: FetchDataType = useFetch({
+  const [isRefresh, setIsRefresh] = useState(false);
+  const {
+    isLoading,
+    error,
+    data: posts,
+    request,
+  }: FetchDataType = useFetch({
     endpoint: `${API_ORIGIN}/posts`,
     method: 'get',
   });
@@ -18,13 +24,24 @@ const PostList = () => {
     request();
   }, []);
 
+  const toggleIsRefresh = () => {
+    setIsRefresh((isRefresh) => !isRefresh);
+  };
+
+  useEffect(() => {
+    if (isRefresh) {
+      toggleIsRefresh();
+      request();
+    }
+  }, [isRefresh]);
+
   return (
     <section>
       {isLoading && <div>Loading...</div>}
       {!isLoading && error && <div>error...</div>}
       {!isLoading &&
-        data &&
-        data.map((post: responseDataType, index: number) => {
+        posts &&
+        posts.map((post: responseDataType, index: number) => {
           return (
             <PostItem
               key={index}
@@ -32,6 +49,7 @@ const PostList = () => {
               prLink={post.attributes.prLink}
               contents={post.attributes.contents}
               createdAt={post.attributes.createdAt}
+              toggleIsRefresh={toggleIsRefresh}
             />
           );
         })}
