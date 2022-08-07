@@ -4,17 +4,17 @@ import { API_ORIGIN } from 'constants/';
 
 interface deleteButtonProp {
   id: number;
-  toggleIsRefresh: () => void;
+  refresh: () => void;
 }
 
-const DeleteButton = ({ id, toggleIsRefresh }: deleteButtonProp) => {
+const DeleteButton = ({ id, refresh }: deleteButtonProp) => {
   const { isLoading, error, data, request }: FetchDataType = useFetch({
     endpoint: `${API_ORIGIN}/posts/${id}`,
     method: 'delete',
   });
 
   useEffect(() => {
-    toggleIsRefresh();
+    data && refresh();
   }, [data]);
 
   const handleDelete = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { FetchDataType, useFetch } from 'api/useFetch';
 import PostItem from 'components/PostList/PostItem';
 import { API_ORIGIN } from 'constants/';
@@ -10,10 +10,15 @@ const PostDetail = () => {
     endpoint: `${API_ORIGIN}/posts/${id}`,
     method: 'get',
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     request();
   }, []);
+
+  const handleRefresh = () => {
+    navigate('/');
+  };
 
   return (
     <section>
@@ -25,6 +30,7 @@ const PostDetail = () => {
           prLink={data.attributes.prLink}
           contents={data.attributes.contents}
           createdAt={data.attributes.createdAt}
+          refresh={handleRefresh}
         />
       )}
     </section>
