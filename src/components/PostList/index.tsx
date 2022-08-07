@@ -49,7 +49,7 @@ const PostList = () => {
               prLink={post.attributes.prLink}
               contents={post.attributes.contents}
               createdAt={post.attributes.createdAt}
-              toggleIsRefresh={toggleIsRefresh}
+              refresh={toggleIsRefresh}
             />
           );
         })}
