@@ -11,8 +11,8 @@ const Header = () => {
       <Link to="/form" className="button">
         리뷰 신청하기
       </Link>
-      <MyPageButton />
       <LogInOutButton />
+      <MyPageButton />
     </header>
   );
 };

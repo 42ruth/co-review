@@ -1,5 +1,5 @@
-import MyProfile from 'components/MyProfile';
 import React from 'react';
+import MyProfile from 'components/MyProfile';
 
 const MyPage = () => {
   return (
