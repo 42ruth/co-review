@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router';
 import { useFetch, FetchDataType } from 'api/useFetch';
 import PrLinkInput from 'components/Form/PrLinkInput';
 import FormContentTextarea from 'components/Form/FormContentTextarea';
@@ -8,43 +8,82 @@ import { PostRequestType } from 'types/postTypes';
 import { API_ORIGIN } from 'constants/index';
 
 const Form = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const id = location && location.search.split('=')[1];
   const [postRequest, setPostRequest] = useState<PostRequestType>({
     contents: '',
     prLink: '',
   });
   const [isValidPrLink, setIsValidPrLink] = useState(false);
-  const { isLoading, error, data, request }: FetchDataType = useFetch({
+
+  const {
+    isLoading: isLoadingGet,
+    error: errorGet,
+    data: dataGet,
+    request: requestGet,
+  }: FetchDataType = useFetch({
+    endpoint: `${API_ORIGIN}/posts/${id}`,
+    method: 'get',
+  });
+  const { request: requestPost }: FetchDataType = useFetch({
     endpoint: `${API_ORIGIN}/posts`,
     method: 'post',
     data: { data: postRequest },
   });
-  const navigate = useNavigate();
+  const { request: requestPut }: FetchDataType = useFetch({
+    endpoint: `${API_ORIGIN}/posts/${id}`,
+    method: 'put',
+    data: { data: postRequest },
+  });
+
+  useEffect(() => {
+    if (id) requestGet();
+  }, []);
+  useEffect(() => {
+    if (id && !isLoadingGet && dataGet) {
+      setPostRequest({
+        prLink: dataGet.attributes.prLink,
+        contents: dataGet.attributes.contents,
+      });
+    }
+  }, dataGet);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!isValidPrLink) {
       return alert('유효하지 않은 Pull Request 링크입니다.');
     }
-    request();
-    navigate('/');
+    // TODO: user 정보까지 post
+    if (id) requestPut();
+    else requestPost();
+    navigate('/', { replace: true });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <PrLinkInput
-        value={postRequest.prLink}
-        setValue={(value) => setPostRequest({ ...postRequest, prLink: value })}
-        isValid={isValidPrLink}
-        setIsValid={(value) => setIsValidPrLink(value)}
-      />
-      <FormContentTextarea
-        value={postRequest.contents}
-        setValue={(value) =>
-          setPostRequest({ ...postRequest, contents: value })
-        }
-      />
-      <FormSubmitButton />
-    </form>
+    <>
+      {id && isLoadingGet && <div>Loading...</div>}
+      {id && !isLoadingGet && errorGet && <div>error...</div>}
+      {(!id || (id && !isLoadingGet && dataGet)) && (
+        <form onSubmit={handleSubmit}>
+          <PrLinkInput
+            value={postRequest.prLink}
+            setValue={(value) =>
+              setPostRequest({ ...postRequest, prLink: value })
+            }
+            isValid={isValidPrLink}
+            setIsValid={(value) => setIsValidPrLink(value)}
+          />
+          <FormContentTextarea
+            value={postRequest.contents}
+            setValue={(value) =>
+              setPostRequest({ ...postRequest, contents: value })
+            }
+          />
+          <FormSubmitButton />
+        </form>
+      )}
+    </>
   );
 };
 
