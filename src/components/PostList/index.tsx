@@ -40,8 +40,8 @@ const PostList = () => {
       {isLoading && <div>Loading...</div>}
       {!isLoading && error && <div>error...</div>}
       {!isLoading &&
-        posts &&
-        posts.map((post: responseDataType, index: number) => {
+        posts.data &&
+        posts.data?.map((post: responseDataType, index: number) => {
           return (
             <PostItem
               key={index}
