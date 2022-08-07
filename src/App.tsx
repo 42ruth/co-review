@@ -6,6 +6,7 @@ import PostPage from 'pages/PostPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import UserContextProvider from 'contexts/UserContextProvider';
+import MyPage from 'pages/MyPage';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/form" element={<Form />} />
           <Route path="/posts/:id" element={<PostPage />} />
+          <Route path="/my" element={<MyPage />} />
         </Routes>
         <Footer />
       </UserContextProvider>
