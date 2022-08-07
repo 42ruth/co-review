@@ -4,6 +4,7 @@ import MainPage from 'pages/MainPage';
 import Form from 'pages/FormPage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import PostPage from 'pages/PostPage';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/posts/:id" element={<PostPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
