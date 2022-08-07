@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'assets/css/Header.css';
 import LogInOutButton from './Auth/LogInOutButton';
+import MyPageButton from 'components/MyPage/MyPageButton';
 
 const Header = () => {
   return (
@@ -11,6 +12,7 @@ const Header = () => {
         리뷰 신청하기
       </Link>
       <LogInOutButton />
+      <MyPageButton />
     </header>
   );
 };
