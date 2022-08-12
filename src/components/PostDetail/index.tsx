@@ -24,12 +24,12 @@ const PostDetail = () => {
     <section>
       {isLoading && <div>Loading...</div>}
       {!isLoading && error && <div>error...</div>}
-      {!isLoading && data && (
+      {!isLoading && data.data && (
         <PostItem
-          id={data.id}
-          prLink={data.attributes.prLink}
-          contents={data.attributes.contents}
-          createdAt={data.attributes.createdAt}
+          id={data.data.id}
+          prLink={data.data.attributes.prLink}
+          contents={data.data.attributes.contents}
+          createdAt={data.data.attributes.createdAt}
           refresh={handleRefresh}
         />
       )}

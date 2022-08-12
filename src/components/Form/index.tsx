@@ -43,8 +43,8 @@ const Form = () => {
   useEffect(() => {
     if (id && !isLoadingGet && dataGet) {
       setPostRequest({
-        prLink: dataGet.attributes.prLink,
-        contents: dataGet.attributes.contents,
+        prLink: dataGet.data.attributes.prLink,
+        contents: dataGet.data.attributes.contents,
       });
     }
   }, dataGet);
