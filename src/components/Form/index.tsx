@@ -10,7 +10,7 @@ import { API_ORIGIN } from 'constants/index';
 
 const Form = () => {
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [postRequest, setPostRequest] = useState<PostRequestType>({
     contents: '',
     prLink: '',
