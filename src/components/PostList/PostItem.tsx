@@ -17,13 +17,15 @@ const PostItem = ({
   refresh,
 }: PostItemProp) => {
   const [formattedDate, setFormattedDate] = useState(formatDate(createdAt));
-  const interval: { current: NodeJS.Timeout | null } = useRef(null);
+  const interval: { current: ReturnType<typeof setTimeout> | null } =
+    useRef(null);
 
   useEffect(() => {
     interval.current = setInterval(() => {
       setFormattedDate(formatDate(createdAt));
     }, 1000 * 60);
-    return () => clearInterval(interval.current as NodeJS.Timeout);
+    return () =>
+      clearInterval(interval.current as ReturnType<typeof setTimeout>);
   }, []);
 
   return (
