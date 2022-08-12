@@ -1,6 +1,6 @@
 import React from 'react';
 import { PostItemType } from 'types/postTypes';
-import DeleteButton from './DeleteButton';
+import DeleteButton from 'components/PostList/DeleteButton';
 import PrLinkButton from 'components/PostList/PrLinkButton';
 import 'assets/css/PostItem.css';
 
