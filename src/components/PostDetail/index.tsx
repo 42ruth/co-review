@@ -24,7 +24,7 @@ const PostDetail = () => {
     <section>
       {isLoading && <div>Loading...</div>}
       {!isLoading && error && <div>error...</div>}
-      {!isLoading && data.data && (
+      {!isLoading && data?.data && (
         <PostItem
           id={data.data.id}
           prLink={data.data.attributes.prLink}
