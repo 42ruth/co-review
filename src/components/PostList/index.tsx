@@ -25,7 +25,7 @@ const PostList = () => {
     data: posts,
     request,
   }: FetchDataType = useFetch({
-    endpoint: `${API_ORIGIN}/posts?populate=user`,
+    endpoint: `${API_ORIGIN}/posts?populate=user&sort=createdAt:desc`,
     method: 'get',
   });
 
