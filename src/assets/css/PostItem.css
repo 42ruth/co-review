@@ -6,8 +6,15 @@
 
 .PostItem .top {
   display: flex;
+  align-items: center;
   gap: 1em;
   background-color: #ccc;
+}
+
+.PostItem .top .img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
 }
 
 .PostItem .button-wrap {

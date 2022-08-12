@@ -1,8 +1,8 @@
 import React from 'react';
-import PrLinkButton from 'components/PostList/PrLinkButton';
 import { PostItemType } from 'types/postTypes';
+import DeleteButton from 'components/PostList/DeleteButton';
+import PrLinkButton from 'components/PostList/PrLinkButton';
 import 'assets/css/PostItem.css';
-import DeleteButton from './DeleteButton';
 
 function formatDate(rawDate: string) {
   const rawDateObject = new Date(rawDate);
@@ -31,6 +31,8 @@ function formatDate(rawDate: string) {
 }
 
 interface PostItemProp extends PostItemType {
+  username: string;
+  profileImage: string;
   refresh: () => void;
 }
 
@@ -39,6 +41,8 @@ const PostItem = ({
   prLink,
   contents,
   createdAt,
+  username,
+  profileImage,
   refresh,
 }: PostItemProp) => {
   const formattedDate = formatDate(createdAt);
@@ -46,7 +50,8 @@ const PostItem = ({
   return (
     <div className="PostItem">
       <div className="top">
-        <div className="username">깃헙이름(githubId)</div>
+        <img className="img" src={profileImage} />
+        <div className="username">{username}</div>
         <div className="date">{formattedDate}</div>
         {/* 로그인한 유저의 글에만 노출되도록 수정 */}
         <DeleteButton id={id} refresh={refresh} />

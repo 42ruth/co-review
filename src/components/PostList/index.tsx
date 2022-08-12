@@ -5,7 +5,16 @@ import { API_ORIGIN } from 'constants/';
 
 interface responseDataType {
   id: number;
-  attributes: { prLink: string; contents: string; createdAt: string };
+  attributes: {
+    prLink: string;
+    contents: string;
+    createdAt: string;
+    user: {
+      data: {
+        attributes: { username: string; profileImageUrl: string };
+      };
+    };
+  };
 }
 
 const PostList = () => {
@@ -48,6 +57,10 @@ const PostList = () => {
               prLink={post.attributes.prLink}
               contents={post.attributes.contents}
               createdAt={post.attributes.createdAt}
+              username={post.attributes.user.data.attributes.username}
+              profileImage={
+                post.attributes.user.data.attributes.profileImageUrl
+              }
               refresh={toggleIsRefresh}
             />
           );
