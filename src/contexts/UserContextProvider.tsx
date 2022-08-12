@@ -9,13 +9,14 @@ interface UserContextProviderProp {
 const UserContextProvider = ({ children }: UserContextProviderProp) => {
   const [userState, setUserState] = useState({
     isLogin: false,
+    token: '',
     user: {},
   });
 
-  // TODO: github oauth
-  const login = (user: UserType) => {
+  const login = (user: UserType, token: string) => {
     setUserState({
       isLogin: true,
+      token: token,
       user: user,
     });
   };
@@ -23,6 +24,7 @@ const UserContextProvider = ({ children }: UserContextProviderProp) => {
   const logout = () => {
     setUserState({
       isLogin: false,
+      token: '',
       user: {},
     });
   };
