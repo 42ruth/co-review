@@ -1,20 +1,9 @@
 import React, { useContext } from 'react';
 import { userContext } from 'contexts/userContext';
+import { API_ORIGIN } from 'constants/index';
 
 const LogInOutButton = () => {
   const auth = useContext(userContext);
-
-  const onLogin = () => {
-    // TODO: oauth로 변경
-    // GET STRAPI_BACKEND_URL/api/connect/${provider}
-
-    auth?.login({
-      id: 0,
-      userName: 'tempName',
-      email: 'temp@temp.com',
-      profileImage: 'https://avatars.githubusercontent.com/u/42',
-    });
-  };
 
   const onLogout = () => {
     auth?.logout();
@@ -23,15 +12,15 @@ const LogInOutButton = () => {
   if (auth?.userState.isLogin) {
     return (
       <button type="button" onClick={onLogout} className="logout-button">
-        <img src={auth.userState.user.profileImage} alt="profile image" />
+        <img src={auth.userState.user.profileImageUrl} alt="profile image" />
         <p>로그아웃</p>
       </button>
     );
   }
   return (
-    <button type="button" onClick={onLogin} className="logout-button">
+    <a href={`${API_ORIGIN}/connect/github`} className="logout-button">
       로그인
-    </button>
+    </a>
   );
 };
 
