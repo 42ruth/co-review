@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { useLocation } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useFetch, FetchDataType } from 'api/useFetch';
 import { API_ORIGIN } from 'constants/';
@@ -9,8 +9,7 @@ const provider = 'github';
 
 const Auth = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
+  const [params] = useSearchParams();
   const token = params.get('access_token');
 
   const auth = useContext(userContext);
