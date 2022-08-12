@@ -13,3 +13,8 @@ header .button {
 
   margin: 5px 20px 0 50px;
 }
+
+.logout-button > img {
+  width: 30px;
+  height: 30px;
+}
