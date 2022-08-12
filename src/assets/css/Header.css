@@ -4,7 +4,7 @@ header {
   width: 100%;
 }
 
-.button {
+header .button {
   background-color: dodgerblue;
   display: block;
   padding: 10px 30px;

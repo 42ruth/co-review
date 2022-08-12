@@ -19,11 +19,7 @@ export interface FetchDataType {
   request: () => void;
 }
 
-export function useFetch({
-  endpoint,
-  method,
-  data,
-}: FetchProp): FetchDataType {
+export function useFetch({ endpoint, method, data }: FetchProp): FetchDataType {
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -51,7 +47,7 @@ export function useFetch({
     axiosPromise
       ?.then((res: ApiResponseType) => {
         console.log(res);
-        setResult(res.data.data);
+        setResult(res.data);
         setError(null);
       })
       ?.catch((err) => {

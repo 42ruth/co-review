@@ -24,14 +24,14 @@ const PostDetail = () => {
     <section>
       {isLoading && <div>Loading...</div>}
       {!isLoading && error && <div>error...</div>}
-      {!isLoading && data && (
+      {!isLoading && data.data && (
         <PostItem
-          id={data.id}
-          prLink={data.attributes.prLink}
-          contents={data.attributes.contents}
-          createdAt={data.attributes.createdAt}
-          username={data.attributes.user.data.attributes.username}
-          profileImage={data.attributes.user.data.attributes.profileImageUrl}
+          id={data.data.id}
+          prLink={data.data.attributes.prLink}
+          contents={data.data.attributes.contents}
+          createdAt={data.data.attributes.createdAt}
+          username={data.data.attributes.user.data.attributes.username}
+          profileImage={data.data.attributes.user.data.attributes.profileImageUrl}
           refresh={handleRefresh}
         />
       )}
