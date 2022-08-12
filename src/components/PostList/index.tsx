@@ -5,7 +5,16 @@ import { API_ORIGIN } from 'constants/';
 
 interface responseDataType {
   id: number;
-  attributes: { prLink: string; contents: string; createdAt: string };
+  attributes: {
+    prLink: string;
+    contents: string;
+    createdAt: string;
+    user: {
+      data: {
+        attributes: { username: string; profileImageUrl: string };
+      };
+    };
+  };
 }
 
 const PostList = () => {
@@ -16,7 +25,7 @@ const PostList = () => {
     data: posts,
     request,
   }: FetchDataType = useFetch({
-    endpoint: `${API_ORIGIN}/posts`,
+    endpoint: `${API_ORIGIN}/posts?populate=user`,
     method: 'get',
   });
 
@@ -42,6 +51,7 @@ const PostList = () => {
       {!isLoading &&
         posts &&
         posts.map((post: responseDataType, index: number) => {
+          console.log(post.attributes.user.data.attributes);
           return (
             <PostItem
               key={index}
@@ -49,6 +59,10 @@ const PostList = () => {
               prLink={post.attributes.prLink}
               contents={post.attributes.contents}
               createdAt={post.attributes.createdAt}
+              username={post.attributes.user.data.attributes.username}
+              profileImage={
+                post.attributes.user.data.attributes.profileImageUrl
+              }
               refresh={toggleIsRefresh}
             />
           );

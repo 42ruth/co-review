@@ -7,7 +7,7 @@ import { API_ORIGIN } from 'constants/';
 const PostDetail = () => {
   const { id } = useParams();
   const { isLoading, error, data, request }: FetchDataType = useFetch({
-    endpoint: `${API_ORIGIN}/posts/${id}`,
+    endpoint: `${API_ORIGIN}/posts/${id}?populate=user`,
     method: 'get',
   });
   const navigate = useNavigate();
@@ -30,6 +30,8 @@ const PostDetail = () => {
           prLink={data.attributes.prLink}
           contents={data.attributes.contents}
           createdAt={data.attributes.createdAt}
+          username={data.attributes.user.data.attributes.username}
+          profileImage={data.attributes.user.data.attributes.profileImageUrl}
           refresh={handleRefresh}
         />
       )}
