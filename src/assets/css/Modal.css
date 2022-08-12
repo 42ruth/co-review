@@ -8,8 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
+}
+
+.Modal .backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .Modal button {
@@ -19,7 +24,7 @@
 }
 
 .Modal .box {
-  width: 50%;
+  position: absolute;
   align-self: center;
   text-align: center;
   background-color: white;

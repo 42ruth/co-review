@@ -17,6 +17,7 @@ const Modal = ({ children, onConfirm, onCancel }: ModalProp) => {
 
   return (
     <div className="Modal">
+      <div className="backdrop" onClick={onCancel}></div>
       <div className="box">
         <div className="header">
           <button onClick={onCancel}>❌</button>
