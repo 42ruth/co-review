@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { userContext } from 'contexts/userContext';
 import toast from 'react-hot-toast';
@@ -13,8 +13,7 @@ const ProtectedRoute = ({ redirectPath }: ProtectedRouteProp) => {
   if (auth?.userState.isLogin) {
     return <Outlet />;
   }
-  toast.error('로그인 후 이용해주세요');
-  return <Navigate to={redirectPath} />;
+  return <Navigate to={redirectPath} replace />;
 };
 
 export default ProtectedRoute;
