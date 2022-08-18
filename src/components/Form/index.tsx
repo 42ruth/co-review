@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
+import { userContext } from 'contexts/userContext';
 import { useFetch, FetchDataType } from 'api/useFetch';
 import PrLinkInput from 'components/Form/PrLinkInput';
 import FormContentTextarea from 'components/Form/FormContentTextarea';
@@ -9,11 +10,13 @@ import { PostRequestType } from 'types/postTypes';
 import { API_ORIGIN } from 'constants/index';
 
 const Form = () => {
+  const auth = useContext(userContext);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [postRequest, setPostRequest] = useState<PostRequestType>({
     contents: '',
     prLink: '',
+    user: auth?.userState.user.id || null,
   });
   const [isValidPrLink, setIsValidPrLink] = useState(false);
 
@@ -28,7 +31,7 @@ const Form = () => {
     endpoint: `${API_ORIGIN}/posts/${id}`,
     method: 'get',
   });
-  const { request: requestPost }: FetchDataType = useFetch({
+  const { data: dataPost, request: requestPost }: FetchDataType = useFetch({
     endpoint: `${API_ORIGIN}/posts`,
     method: 'post',
     data: { data: postRequest },
@@ -48,19 +51,28 @@ const Form = () => {
       setPostRequest({
         prLink: dataGet.data.attributes.prLink,
         contents: dataGet.data.attributes.contents,
+        user: auth?.userState.user.id || null,
       });
     }
   }, [dataGet]);
+
+  useEffect(() => {
+    if (dataPost) {
+      navigate(`/posts/${dataPost.data.id}`, { replace: true });
+    }
+  }, [dataPost]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!isValidPrLink) {
       return alert('유효하지 않은 Pull Request 링크입니다.');
     }
-    // TODO: user 정보까지 post
-    if (id) requestPut();
-    else requestPost();
-    navigate(`/posts/${id}`, { replace: true });
+
+    if (id) {
+      requestPut();
+      navigate(`/posts/${id}`, { replace: true });
+    }
+    requestPost();
   };
 
   return (
