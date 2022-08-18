@@ -42,6 +42,7 @@ const Form = () => {
   useEffect(() => {
     if (id) requestGet();
   }, []);
+
   useEffect(() => {
     if (id && !isLoadingGet && dataGet) {
       setPostRequest({
@@ -49,7 +50,7 @@ const Form = () => {
         contents: dataGet.data.attributes.contents,
       });
     }
-  }, dataGet);
+  }, [dataGet]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

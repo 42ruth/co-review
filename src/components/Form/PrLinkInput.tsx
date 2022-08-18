@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 const prLinkRegex =
   /^(https?:\/\/)(github\.com\/)([0-9a-zA-z-_]+)(\/)([0-9a-zA-z-_]+)(\/pull\/)([0-9]+$)/i;
 
@@ -16,7 +16,10 @@ const PrLinkInput = ({
   setIsValid,
 }: PrLinkInputProp) => {
   const [isTouched, setIsTouched] = useState(false);
-  setIsValid(prLinkRegex.test(value));
+
+  useEffect(() => {
+    setIsValid(prLinkRegex.test(value));
+  }, []);
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
