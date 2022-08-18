@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router';
+import { useNavigate } from 'react-router';
+import { useSearchParams } from 'react-router-dom';
 import { useFetch, FetchDataType } from 'api/useFetch';
 import PrLinkInput from 'components/Form/PrLinkInput';
 import FormContentTextarea from 'components/Form/FormContentTextarea';
@@ -9,13 +10,14 @@ import { API_ORIGIN } from 'constants/index';
 
 const Form = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const id = location && location.search.split('=')[1];
+  const [searchParams] = useSearchParams();
   const [postRequest, setPostRequest] = useState<PostRequestType>({
     contents: '',
     prLink: '',
   });
   const [isValidPrLink, setIsValidPrLink] = useState(false);
+
+  const id = searchParams.get('id');
 
   const {
     isLoading: isLoadingGet,
@@ -57,7 +59,7 @@ const Form = () => {
     // TODO: user 정보까지 post
     if (id) requestPut();
     else requestPost();
-    navigate('/', { replace: true });
+    navigate(`/posts/${id}`, { replace: true });
   };
 
   return (
