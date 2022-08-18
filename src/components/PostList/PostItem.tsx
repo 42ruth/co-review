@@ -5,7 +5,7 @@ import { formatDate } from 'utils/dateUtil';
 import DeleteButton from 'components/PostList/DeleteButton';
 import PrLinkButton from 'components/PostList/PrLinkButton';
 import 'assets/css/PostItem.css';
-import UpdateButton from './UpdateButton';
+import UpdateButton from 'components/PostList/UpdateButton';
 
 interface PostItemProp extends PostItemType {
   userId: number;
