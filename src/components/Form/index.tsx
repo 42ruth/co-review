@@ -44,6 +44,12 @@ const Form = () => {
   }, []);
 
   useEffect(() => {
+    if (!id) {
+      setPostRequest({ contents: '', prLink: '' });
+    }
+  }, [id]);
+
+  useEffect(() => {
     if (id && !isLoadingGet && dataGet) {
       setPostRequest({
         prLink: dataGet.data.attributes.prLink,
