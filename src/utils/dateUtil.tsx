@@ -12,7 +12,7 @@ export function formatDate(rawDate: string) {
   const diffDate = Math.floor(diffHour / 24);
   let dateString;
   if (diffMin < 60) {
-    dateString = diffMin === 0 ? '방금 전' : `${diffMin}분 전`;
+    dateString = diffMin <= 0 ? '방금 전' : `${diffMin}분 전`;
   } else if (diffHour < 24) {
     dateString = `${diffHour}시간 전`;
   } else if (diffDate < 7) {
