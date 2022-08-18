@@ -11,7 +11,7 @@ interface responseDataType {
     createdAt: string;
     user: {
       data: {
-        attributes: { username: string; profileImageUrl: string };
+        attributes: { id: number; username: string; profileImageUrl: string };
       };
     };
   };
@@ -57,6 +57,7 @@ const PostList = () => {
               prLink={post.attributes.prLink}
               contents={post.attributes.contents}
               createdAt={post.attributes.createdAt}
+              userId={post.attributes.user.data.attributes.id}
               username={post.attributes.user.data.attributes.username}
               profileImage={
                 post.attributes.user.data.attributes.profileImageUrl

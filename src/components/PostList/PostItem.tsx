@@ -1,11 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { userContext } from 'contexts/userContext';
 import { PostItemType } from 'types/postTypes';
 import { formatDate } from 'utils/dateUtil';
 import DeleteButton from 'components/PostList/DeleteButton';
 import PrLinkButton from 'components/PostList/PrLinkButton';
 import 'assets/css/PostItem.css';
+import UpdateButton from './UpdateButton';
 
 interface PostItemProp extends PostItemType {
+  userId: number;
   username: string;
   profileImage: string;
   refresh: () => void;
@@ -16,10 +19,12 @@ const PostItem = ({
   prLink,
   contents,
   createdAt,
+  userId,
   username,
   profileImage,
   refresh,
 }: PostItemProp) => {
+  const auth = useContext(userContext);
   const [formattedDate, setFormattedDate] = useState(formatDate(createdAt));
   const interval: { current: ReturnType<typeof setTimeout> | null } =
     useRef(null);
@@ -38,8 +43,10 @@ const PostItem = ({
         <img className="img" src={profileImage} />
         <div className="username">{username}</div>
         <div className="date">{formattedDate}</div>
-        {/* 로그인한 유저의 글에만 노출되도록 수정 */}
-        <DeleteButton id={id} refresh={refresh} />
+        {auth?.userState.user.id === userId && <UpdateButton id={id} />}
+        {auth?.userState.user.id === userId && (
+          <DeleteButton id={id} refresh={refresh} />
+        )}
       </div>
       <div className="bottom">
         <div className="content">{contents}</div>
