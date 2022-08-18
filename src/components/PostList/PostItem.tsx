@@ -1,34 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { PostItemType } from 'types/postTypes';
+import { formatDate } from 'utils/dateUtil';
 import DeleteButton from 'components/PostList/DeleteButton';
 import PrLinkButton from 'components/PostList/PrLinkButton';
 import 'assets/css/PostItem.css';
-
-function formatDate(rawDate: string) {
-  const rawDateObject = new Date(rawDate);
-  const todayDateObject = new Date();
-  const diffHour = Math.floor(
-    (todayDateObject.getTime() - rawDateObject.getTime()) / (1000 * 60 * 60)
-  );
-  const diffDate = Math.floor(diffHour / 24);
-  let dateString;
-  if (diffHour < 24) {
-    dateString = diffHour === 0 ? '방금 전' : `${diffHour}시간 전`;
-  } else if (diffDate <= 6) {
-    dateString = `${diffDate}일 전`;
-  } else {
-    const year = rawDateObject.getFullYear();
-    const month = rawDateObject.getMonth() + 1;
-    const date = rawDateObject.getDate();
-    const hour = rawDateObject.getHours();
-    const minute = rawDateObject.getMinutes();
-    const ampm = hour < 12 ? '오전' : '오후';
-    dateString = `${year}.${month}.${date} ${ampm} ${
-      hour > 12 ? hour % 12 : hour
-    }:${minute}`;
-  }
-  return dateString;
-}
 
 interface PostItemProp extends PostItemType {
   username: string;
@@ -45,7 +20,17 @@ const PostItem = ({
   profileImage,
   refresh,
 }: PostItemProp) => {
-  const formattedDate = formatDate(createdAt);
+  const [formattedDate, setFormattedDate] = useState(formatDate(createdAt));
+  const interval: { current: ReturnType<typeof setTimeout> | null } =
+    useRef(null);
+
+  useEffect(() => {
+    interval.current = setInterval(() => {
+      setFormattedDate(formatDate(createdAt));
+    }, 1000 * 60);
+    return () =>
+      clearInterval(interval.current as ReturnType<typeof setTimeout>);
+  }, []);
 
   return (
     <div className="PostItem">
