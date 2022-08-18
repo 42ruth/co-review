@@ -16,9 +16,7 @@ const LogInOutButton = () => {
       if (storageString !== contextString) {
         storage.setItem('userState', contextString);
       }
-      return;
-    }
-    if (storageString) {
+    } else if (storageString) {
       const storageState = JSON.parse(storageString);
       auth?.login(storageState.user, storageState.token);
     }
