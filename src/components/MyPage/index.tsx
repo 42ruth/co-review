@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { userContext } from 'contexts/userContext';
 
-const MyProfile = () => {
+const MyPage = () => {
   const auth = useContext(userContext);
   return (
     <>
@@ -22,4 +22,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default MyPage;
