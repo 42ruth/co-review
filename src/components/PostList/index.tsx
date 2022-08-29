@@ -12,6 +12,7 @@ interface responseDataType {
     createdAt: string;
     user: {
       data: {
+        id: number;
         attributes: { username: string; profileImageUrl: string };
       };
     };
@@ -72,6 +73,7 @@ const PostList = ({ endpointProp }: PostListProp) => {
               prLink={post.attributes.prLink}
               contents={post.attributes.contents}
               createdAt={post.attributes.createdAt}
+              userId={post.attributes.user.data.id}
               username={post.attributes.user.data.attributes.username}
               profileImage={
                 post.attributes.user.data.attributes.profileImageUrl

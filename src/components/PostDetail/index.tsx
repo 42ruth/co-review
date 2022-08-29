@@ -30,8 +30,11 @@ const PostDetail = () => {
           prLink={data.data.attributes.prLink}
           contents={data.data.attributes.contents}
           createdAt={data.data.attributes.createdAt}
+          userId={data.data.attributes.user.data.id}
           username={data.data.attributes.user.data.attributes.username}
-          profileImage={data.data.attributes.user.data.attributes.profileImageUrl}
+          profileImage={
+            data.data.attributes.user.data.attributes.profileImageUrl
+          }
           refresh={handleRefresh}
         />
       )}
