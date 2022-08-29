@@ -81,24 +81,24 @@ const PostList = ({ endpointProp }: PostListProp) => {
           );
         })}
       {!isLoading && !isMainPage.current && data?.posts && (
-        <h3>작성한 포스트: {data.posts.length}개</h3>
+        <div>
+          <h3>작성한 포스트: {data.posts.length}개</h3>
+          {data.posts?.map((post: PostItemType, index: number) => {
+            return (
+              <PostItem
+                key={index}
+                id={post.id}
+                prLink={post.prLink}
+                contents={post.contents}
+                createdAt={post.createdAt}
+                username={data.username}
+                profileImage={data.profileImageUrl}
+                refresh={toggleIsRefresh}
+              />
+            );
+          })}
+        </div>
       )}
-      {!isLoading &&
-        !isMainPage.current &&
-        data?.posts?.map((post: PostItemType, index: number) => {
-          return (
-            <PostItem
-              key={index}
-              id={post.id}
-              prLink={post.prLink}
-              contents={post.contents}
-              createdAt={post.createdAt}
-              username={data.username}
-              profileImage={data.profileImageUrl}
-              refresh={toggleIsRefresh}
-            />
-          );
-        })}
     </section>
   );
 };
