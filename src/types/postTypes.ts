@@ -17,4 +17,5 @@ export interface PostItemType extends PostType {
 export interface PostRequestType extends PostType {
   prLink: string;
   contents: string;
+  user: number | null;
 }
