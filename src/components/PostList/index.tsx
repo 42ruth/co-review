@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useFetch, FetchDataType } from 'api/useFetch';
+import { PostItemType } from 'types/postTypes';
 import PostItem from 'components/PostList/PostItem';
 import { API_ORIGIN } from 'constants/';
 
@@ -11,27 +12,41 @@ interface responseDataType {
     createdAt: string;
     user: {
       data: {
+        id: number;
         attributes: { username: string; profileImageUrl: string };
       };
     };
   };
 }
 
-const PostList = () => {
+interface PostListProp {
+  endpointProp?: string;
+}
+
+const PostList = ({ endpointProp }: PostListProp) => {
+  const [endpoint, setEndpoint] = useState('');
   const [isRefresh, setIsRefresh] = useState(false);
-  const {
-    isLoading,
-    error,
-    data: posts,
-    request,
-  }: FetchDataType = useFetch({
-    endpoint: `${API_ORIGIN}/posts?populate=user&sort=createdAt:desc`,
+  const { isLoading, error, data, request }: FetchDataType = useFetch({
+    endpoint: endpoint,
     method: 'get',
   });
+  const isMainPage = useRef(true);
 
   useEffect(() => {
-    request();
-  }, []);
+    if (!endpointProp) {
+      setEndpoint(`${API_ORIGIN}/posts?populate=user&sort=createdAt:desc`);
+      isMainPage.current = true;
+    } else {
+      setEndpoint(endpointProp);
+      isMainPage.current = false;
+    }
+  }, [endpoint]);
+
+  useEffect(() => {
+    if (endpoint) {
+      request();
+    }
+  }, [endpoint]);
 
   const toggleIsRefresh = () => {
     setIsRefresh((isRefresh) => !isRefresh);
@@ -49,7 +64,8 @@ const PostList = () => {
       {isLoading && <div>Loading...</div>}
       {!isLoading && error && <div>error...</div>}
       {!isLoading &&
-        posts?.data?.map((post: responseDataType, index: number) => {
+        isMainPage.current &&
+        data?.data?.map((post: responseDataType, index: number) => {
           return (
             <PostItem
               key={index}
@@ -57,6 +73,7 @@ const PostList = () => {
               prLink={post.attributes.prLink}
               contents={post.attributes.contents}
               createdAt={post.attributes.createdAt}
+              userId={post.attributes.user.data.id}
               username={post.attributes.user.data.attributes.username}
               profileImage={
                 post.attributes.user.data.attributes.profileImageUrl
@@ -65,6 +82,26 @@ const PostList = () => {
             />
           );
         })}
+      {!isLoading && !isMainPage.current && data?.posts && (
+        <div>
+          <h3>작성한 포스트: {data.posts.length}개</h3>
+          {data.posts?.map((post: PostItemType, index: number) => {
+            return (
+              <PostItem
+                key={index}
+                id={post.id}
+                prLink={post.prLink}
+                contents={post.contents}
+                createdAt={post.createdAt}
+                userId={data.id}
+                username={data.username}
+                profileImage={data.profileImageUrl}
+                refresh={toggleIsRefresh}
+              />
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };

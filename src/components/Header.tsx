@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'assets/css/Header.css';
-import MyPageButton from 'components/MyProfile/MyPageButton';
+import MyPageButton from 'components/MyPage/MyPageButton';
 import LogInOutButton from './Auth/LogInOutButton';
 
 const Header = () => {
