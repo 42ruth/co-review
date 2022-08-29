@@ -1,7 +1,7 @@
 import React from 'react';
-import MyProfile from 'components/MyProfile';
+import MyProfile from 'components/MyPage';
 
-const MyPage = () => {
+const MyPagePage = () => {
   return (
     <main>
       <h1>my page</h1>
@@ -10,4 +10,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default MyPagePage;
