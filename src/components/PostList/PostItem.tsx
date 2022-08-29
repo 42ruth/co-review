@@ -43,9 +43,11 @@ const PostItem = ({
         <img className="img" src={profileImage} />
         <div className="username">{username}</div>
         <div className="date">{formattedDate}</div>
-        {auth?.userState.user.id === userId && <UpdateButton id={id} />}
         {auth?.userState.user.id === userId && (
-          <DeleteButton id={id} refresh={refresh} />
+          <div>
+            <UpdateButton id={id} />
+            <DeleteButton id={id} refresh={refresh} />
+          </div>
         )}
       </div>
       <div className="bottom">
