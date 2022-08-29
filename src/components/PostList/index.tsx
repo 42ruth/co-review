@@ -93,6 +93,7 @@ const PostList = ({ endpointProp }: PostListProp) => {
                 prLink={post.prLink}
                 contents={post.contents}
                 createdAt={post.createdAt}
+                userId={data.id}
                 username={data.username}
                 profileImage={data.profileImageUrl}
                 refresh={toggleIsRefresh}

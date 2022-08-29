@@ -21,10 +21,9 @@ const App = () => {
           <Route path="/" element={<MainPage />} />
           <Route element={<ProtectedRoute redirectPath="/" />}>
             <Route path="/form" element={<Form />} />
-            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/mypage" element={<MyPagePage />} />
           </Route>
           <Route path="/posts/:id" element={<PostPage />} />
-          <Route path="/mypage" element={<MyPagePage />} />
           <Route path="/connect/github/redirect" element={<Auth />} />
         </Routes>
         <Footer />
