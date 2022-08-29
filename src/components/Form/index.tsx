@@ -42,11 +42,17 @@ const Form = () => {
   }, []);
 
   useEffect(() => {
+    if (!postId) {
+      setPostRequest({ contents: '', prLink: '', user: null });
+    }
+  }, [postId]);
+
+  useEffect(() => {
     setPostRequest({
       ...postRequest,
       user: auth?.userState.user.id || null,
-    })
-  }, [auth?.userState.user.id])
+    });
+  }, [auth?.userState.user.id]);
 
   useEffect(() => {
     if (postId && !getPost.isLoading && getPost.data) {
