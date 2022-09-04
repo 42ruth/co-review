@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Header from 'components/Header';
 import MainPage from 'pages/MainPage';
-import Form from 'pages/FormPage';
+import Editor from 'pages/EditorPage';
 import PostPage from 'pages/PostPage';
 import MyPagePage from 'pages/MyPagePage';
 import Footer from 'components/Footer';
@@ -20,7 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route element={<ProtectedRoute redirectPath="/" />}>
-            <Route path="/form" element={<Form />} />
+            <Route path="/editor" element={<Editor />} />
             <Route path="/mypage" element={<MyPagePage />} />
           </Route>
           <Route path="/posts/:id" element={<PostPage />} />

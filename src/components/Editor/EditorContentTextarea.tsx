@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-interface FormContentTextareaProp {
+interface EditorContentTextareaProp {
   value: string;
   // eslint-disable-next-line
   setValue: (value: string) => void;
@@ -8,7 +8,7 @@ interface FormContentTextareaProp {
 
 const maxContentLength = 300;
 
-const FormContentTextarea = ({ value, setValue }: FormContentTextareaProp) => {
+const EditorContentTextarea = ({ value, setValue }: EditorContentTextareaProp) => {
   const [errorMessage, setErrorMessage] = useState('');
   const handleChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
     const { value } = event.currentTarget;
@@ -31,4 +31,4 @@ const FormContentTextarea = ({ value, setValue }: FormContentTextareaProp) => {
   );
 };
 
-export default FormContentTextarea;
+export default EditorContentTextarea;
