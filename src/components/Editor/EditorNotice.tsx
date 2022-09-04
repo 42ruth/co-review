@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormNotice = () => {
+const EditorNotice = () => {
   return (
     <section>
       <p>건강한 코드리뷰 문화를 만들기 위해 꼭 지켜주세요.</p>
@@ -13,4 +13,4 @@ const FormNotice = () => {
   );
 };
 
-export default FormNotice;
+export default EditorNotice;

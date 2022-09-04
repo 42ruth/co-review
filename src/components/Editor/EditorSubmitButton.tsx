@@ -1,7 +1,7 @@
 import React from 'react';
 
-const FormSubmitButton = () => {
+const EditorSubmitButton = () => {
   return <button type="submit">작성하기</button>;
 };
 
-export default FormSubmitButton;
+export default EditorSubmitButton;

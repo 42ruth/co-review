@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import { userContext } from 'contexts/userContext';
 import { useFetch, FetchDataType } from 'api/useFetch';
-import PrLinkInput from 'components/Form/PrLinkInput';
-import FormContentTextarea from 'components/Form/FormContentTextarea';
-import FormSubmitButton from 'components/Form/FormSubmitButton';
+import PrLinkInput from 'components/Editor/PrLinkInput';
+import EditorContentTextarea from 'components/Editor/EditorContentTextarea';
+import EditorSubmitButton from 'components/Editor/EditorSubmitButton';
 import { PostRequestType } from 'types/postTypes';
 import { API_ORIGIN } from 'constants/index';
 
-const Form = () => {
+const Editor = () => {
   const auth = useContext(userContext);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -97,17 +97,17 @@ const Form = () => {
             isValid={isValidPrLink}
             setIsValid={(value) => setIsValidPrLink(value)}
           />
-          <FormContentTextarea
+          <EditorContentTextarea
             value={postRequest.contents}
             setValue={(value) =>
               setPostRequest({ ...postRequest, contents: value })
             }
           />
-          <FormSubmitButton />
+          <EditorSubmitButton />
         </form>
       )}
     </>
   );
 };
 
-export default Form;
+export default Editor;
