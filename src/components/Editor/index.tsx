@@ -79,8 +79,9 @@ const Editor = () => {
     if (postId) {
       putPost.request();
       navigate(`/posts/${postId}`, { replace: true });
+    } else {
+      postPost.request();
     }
-    postPost.request();
   };
 
   return (
