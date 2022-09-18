@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { userContext } from 'contexts/userContext';
-import toast from 'react-hot-toast';
 
 interface ProtectedRouteProp {
   redirectPath: string;
