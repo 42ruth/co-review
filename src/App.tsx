@@ -25,8 +25,10 @@ const App = () => {
             <Route path="/mypage" element={<MyPagePage />} />
             <Route path="/posts/:id" element={<PostPage />} />
           </Route>
+          <Route element={<ProtectedRoute isReverse redirectPath="/" />}>
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
           <Route path="/connect/github/redirect" element={<Auth />} />
-          <Route path="/login" element={<LoginPage />} />
         </Routes>
         <Footer />
       </UserContextProvider>
