@@ -10,6 +10,7 @@ import Footer from 'components/Footer';
 import UserContextProvider from 'contexts/UserContextProvider';
 import Auth from 'components/Auth/Auth';
 import ProtectedRoute from 'routes/ProtectedRoute';
+import LoginPage from 'pages/LoginPage';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           </Route>
           <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/connect/github/redirect" element={<Auth />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
         <Footer />
       </UserContextProvider>
