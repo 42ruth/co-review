@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { userContext } from 'contexts/userContext';
+import { useCheckLogin } from 'hooks/useCheckLogin';
 
 interface ProtectedRouteProp {
   redirectPath: string;
 }
 
 const ProtectedRoute = ({ redirectPath }: ProtectedRouteProp) => {
-  const auth = useContext(userContext);
-
-  if (auth?.userState.isLogin) {
+  if (useCheckLogin()) {
     return <Outlet />;
   }
   return <Navigate to={redirectPath} replace />;
