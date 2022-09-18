@@ -20,11 +20,11 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route element={<ProtectedRoute redirectPath="/" />}>
+          <Route element={<ProtectedRoute redirectPath="/login" />}>
             <Route path="/editor" element={<Editor />} />
             <Route path="/mypage" element={<MyPagePage />} />
+            <Route path="/posts/:id" element={<PostPage />} />
           </Route>
-          <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/connect/github/redirect" element={<Auth />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
