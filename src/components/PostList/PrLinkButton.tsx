@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCheckLogin } from 'hooks/useCheckLogin';
 
 interface PrLinkButtonProp {
   prLink: string;
@@ -7,7 +8,7 @@ interface PrLinkButtonProp {
 const PrLinkButton = ({ prLink }: PrLinkButtonProp) => {
   return (
     <a
-      href={prLink}
+      href={useCheckLogin() ? prLink : '/login'}
       target="_blank"
       rel="noopener noreferrer"
       className="button"
